@@ -1,0 +1,15 @@
+
+#temporary files
+*~
+
+#user
+cinefil.xcodeproj/xcuserdata/
+cinefil.xcodeproj/project.xcworkspace/xcuserdata/
+cinefil.xcworkspace/xcuserdata/
+.DS_Store
+
+#external libs
+Pods/
+
+#build
+DerivedData/
