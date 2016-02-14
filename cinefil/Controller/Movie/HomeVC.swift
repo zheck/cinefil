@@ -7,15 +7,26 @@
 //
 
 import UIKit
+import BXProgressHUD
 
-class CinefilVC: CinefilBaseVC {
+class HomeVC: CinefilBaseVC {
 
-    var movies: [String] = []
+    @IBOutlet weak var tableView: UITableView!
+
+    var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let hub = BXProgressHUD.showHUDAddedTo(self.view)
+        tableView.dataSource = self
+        tableView.delegate = self
 
-        // Do any additional setup after loading the view.
+        MovieManager.getPopularMovies({ (movies) -> Void in
+            self.movies = movies
+            hub.hide()
+            self.tableView.reloadData()
+            }) { (error) -> Void in
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,7 +34,6 @@ class CinefilVC: CinefilBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
@@ -36,12 +46,16 @@ class CinefilVC: CinefilBaseVC {
 
 }
 
-extension CinefilVC: UITableViewDataSource, UITableViewDelegate {
+extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("CinefilMovieCellID", forIndexPath: indexPath) as! CinefilMovieCell
+        let movie = movies[indexPath.row]
+        cell.titleLabel.text = movie.title
+
+        return cell
     }
 }

@@ -8,8 +8,12 @@ cinefil.xcodeproj/project.xcworkspace/xcuserdata/
 cinefil.xcworkspace/xcuserdata/
 .DS_Store
 
+#api
+api_key/
+
 #external libs
 Pods/
+Podfile.lock
 
 #build
 DerivedData/

@@ -8,7 +8,7 @@
         <!--Movies-->
         <scene sceneID="hCR-8Z-Mlf">
             <objects>
-                <viewController id="TLe-4e-WR3" customClass="CinefilVC" customModule="cinefil" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="TLe-4e-WR3" customClass="HomeVC" customModule="cinefil" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mDz-XY-Vvo"/>
                         <viewControllerLayoutGuide type="bottom" id="W48-co-ZvC"/>
@@ -17,9 +17,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dha-GE-nT6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="45" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dha-GE-nT6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CinefilMovieCellID" id="VsL-zn-fjf" customClass="CinefilMovieCell" customModule="cinefil" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="45"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VsL-zn-fjf" id="F82-eT-Ggs">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4J-F5-5QL">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="A4J-F5-5QL" secondAttribute="bottom" constant="8" id="VVy-HB-k8p"/>
+                                                <constraint firstItem="A4J-F5-5QL" firstAttribute="top" secondItem="F82-eT-Ggs" secondAttribute="top" constant="8" id="ZHD-xu-zmA"/>
+                                                <constraint firstItem="A4J-F5-5QL" firstAttribute="leading" secondItem="F82-eT-Ggs" secondAttribute="leading" constant="8" id="iJT-X5-3qm"/>
+                                                <constraint firstAttribute="trailing" secondItem="A4J-F5-5QL" secondAttribute="trailing" constant="8" id="jrK-pe-le3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="A4J-F5-5QL" id="6iN-2K-Uie"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,6 +58,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Movies" image="MoviesIcon" id="1kZ-gc-zO8"/>
+                    <connections>
+                        <outlet property="tableView" destination="Dha-GE-nT6" id="Vj5-y7-c0p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LjE-oZ-WAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
