@@ -14,18 +14,22 @@ class HomeVC: CinefilBaseVC {
     @IBOutlet weak var tableView: UITableView!
 
     var movies: [Movie] = []
+    var appearedMovies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let hub = BXProgressHUD.showHUDAddedTo(self.view)
+
         tableView.dataSource = self
         tableView.delegate = self
 
+        let hub = BXProgressHUD.showHUDAddedTo(self.view)
         MovieManager.getPopularMovies({ (movies) -> Void in
-            self.movies = movies
             hub.hide()
+            self.movies = movies
             self.tableView.reloadData()
             }) { (error) -> Void in
+                print(error.description)
+                hub.hide()
         }
     }
 
@@ -47,6 +51,7 @@ class HomeVC: CinefilBaseVC {
 }
 
 extension HomeVC: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
@@ -54,8 +59,28 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("CinefilMovieCellID", forIndexPath: indexPath) as! CinefilMovieCell
         let movie = movies[indexPath.row]
-        cell.titleLabel.text = movie.title
+        cell.setupWithMovie(movie)
+
+        if !appearedMovies.contains(movie) {
+            appearedMovies.append(movie)
+            cell.presentWithAnimation()
+        }
 
         return cell
     }
+
+    // Reset backdrop image position in cells
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        for cell in tableView.visibleCells {
+            let cinefilCell = cell as! CinefilMovieCell
+            let cellPositionInView = tableView.convertRect(cell.frame, toView: view)
+            let distanceFromCenter = view.frame.size.height / 2 - cellPositionInView.origin.y
+            let spacing = cinefilCell.backdropImageView.frame.size.height - cell.frame.size.height
+            let movement = (distanceFromCenter / view.frame.size.height) * spacing
+            var imageRect = cinefilCell.backdropImageView.frame
+            imageRect.origin.y = movement - spacing / 2
+            cinefilCell.backdropImageView.frame = imageRect
+        }
+    }
+
 }

@@ -10,9 +10,22 @@ import UIKit
 
 class MovieManager {
 
+    class func getMovieGenre(success: ([Genre] -> Void), failure: (ServiceError -> Void)) {
+        MovieDBService.instance.baseRequest(.MovieGenres, success: { (response) -> Void in
+            var genres: [Genre] = []
+            for genre in response["genres"].arrayValue {
+                genres.append(Genre(json: genre))
+            }
+            success(genres)
+
+            }) { (error) -> Void in
+                failure(ServiceError(error: error.description))
+        }
+    }
+
     class func getPopularMovies(success: ([Movie] -> Void), failure: (ServiceError -> Void)) {
 
-        MovieDBService.instance.baseRequest(.TopRatedMovies, success: { (response) -> Void in
+        MovieDBService.instance.baseRequest(.PopularMovies, success: { (response) -> Void in
             var movies: [Movie] = []
             for movie in response["results"].arrayValue {
                 movies.append(Movie(json: movie))

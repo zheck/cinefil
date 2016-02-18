@@ -6,6 +6,7 @@ use_frameworks!
 target 'cinefil' do
 
 pod 'Alamofire', '~> 3.0'
+pod 'AlamofireImage'
 pod 'SwiftyJSON'
 pod 'BXProgressHUD'
 

@@ -8,12 +8,28 @@
 
 import SwiftyJSON
 
-struct Movie {
+func == (lhs: Movie, rhs: Movie) -> Bool{
+    return lhs.id == rhs.id
+}
 
+struct Movie: Equatable {
+
+    let id: String?
     let title: String?
+    let poster: String?
+    let backDrop: String?
+    let rating: Float
+    let releaseDate: String?
+    let idGenre: Int
 
     init(json: JSON) {
+        id = json["id"].stringValue
         title = json["title"].stringValue
+        poster = json["poster_path"].stringValue
+        backDrop = json["backdrop_path"].stringValue
+        rating = json["vote_average"].floatValue
+        releaseDate = json["release_date"].stringValue
+        idGenre = (json["genre_ids"].arrayValue.first?.intValue)!
     }
 
 }

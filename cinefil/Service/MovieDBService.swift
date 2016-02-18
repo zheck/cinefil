@@ -13,12 +13,21 @@ class MovieDBService {
 
     enum Service: String {
         case TopRatedMovies = "/movie/top_rated"
-        case PopularMovies = "/movie/Popular"
+        case PopularMovies = "/movie/popular"
+        case MovieGenres = "/genre/movie/list"
+    }
+
+    enum ImageSize: String {
+        case Small = "w300"
+        case Normal = "w780"
+        case Big = "w1280"
+        case Original = "original"
     }
 
     static let instance = MovieDBService()
 
     let baseUrl = "https://api.themoviedb.org/3"
+    let imageBaseUrl = "https://image.tmdb.org/t/p/"
     var apiKey = ""
 
     init() {
@@ -38,6 +47,14 @@ class MovieDBService {
                 failure(error)
             }
         }
+    }
+
+    func imageUrl(size: ImageSize, name: String) -> NSURL? {
+        let urlString = imageBaseUrl + "/\(size.rawValue)/" + name
+        if let url = NSURL(string: urlString) {
+            return url
+        }
+        return nil
     }
 
 }
