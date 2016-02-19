@@ -1,15 +1,17 @@
 //
-//  CinefilMovieCell.swift
+//  HomeMovieCell.swift
 //  cinefil
 //
-//  Created by zhou on 2/13/16.
+//  Created by zhou on 2/19/16.
 //  Copyright © 2016 zhou. All rights reserved.
 //
 
 import UIKit
 
+let HomeMovieCellNibName = "HomeMovieCell"
+let HomeMovieCellID = "HomeMovieCellID"
 
-class CinefilMovieCell: UITableViewCell {
+class HomeMovieCell: FoldingCell {
 
     @IBOutlet weak var backdropImageView: UIImageView!
 
@@ -38,6 +40,8 @@ class CinefilMovieCell: UITableViewCell {
 
         posterView.addBackgroundLayer(UIColor.colorFromHex("c8c8c8"), to:UIColor.colorFromHex("aaaaaa"))
         shadowMask.addBackgroundLayer(UIColor.clearColor(), to: UIColor.colorFromHex("000000", alpha: 0.9))
+
+        foregroundView.layer.masksToBounds = true
     }
 
     func setupWithMovie(movie: Movie) {
@@ -62,7 +66,7 @@ class CinefilMovieCell: UITableViewCell {
 
         animateLoader()
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.posterView.frame.origin.x = 0
+            self.posterView.frame.origin.x = 8
         }
         UIView.animateWithDuration(0.4, delay: 0.5, options: .CurveLinear, animations: { () -> Void in
             self.titleLabel.alpha = 1
@@ -84,10 +88,18 @@ class CinefilMovieCell: UITableViewCell {
         loaderImageView.layer.addAnimation(rotation, forKey: "transform.rotation")
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    // MARK: - FoldingCell
 
-        // Configure the view for the selected state
+    override func animationDuration(itemIndex:NSInteger, type:AnimationType)-> NSTimeInterval {
+        let durations = [0.26, 0.2, 0.2]
+        return durations[itemIndex]
     }
 
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
 }

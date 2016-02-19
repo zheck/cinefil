@@ -16,20 +16,34 @@ class HomeVC: CinefilBaseVC {
     var movies: [Movie] = []
     var appearedMovies: [Movie] = []
 
+    let kCloseCellHeight: CGFloat = 140
+
+    let kOpenCellHeight: CGFloat = 424
+
+    var cellHeights = [CGFloat]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.dataSource = self
-        tableView.delegate = self
-
+        tableView.registerNib(UINib(nibName: HomeMovieCellNibName, bundle: nil), forCellReuseIdentifier: HomeMovieCellID)
         let hub = BXProgressHUD.showHUDAddedTo(self.view)
         MovieManager.getPopularMovies({ (movies) -> Void in
             hub.hide()
+
             self.movies = movies
+            self.createCellHeightsArray()
+            self.tableView.dataSource = self
+            self.tableView.delegate = self
             self.tableView.reloadData()
             }) { (error) -> Void in
                 print(error.description)
                 hub.hide()
+        }
+    }
+
+    func createCellHeightsArray() {
+        for _ in 0...movies.count {
+            cellHeights.append(kCloseCellHeight)
         }
     }
 
@@ -56,8 +70,46 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
         return movies.count
     }
 
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeights[indexPath.row]
+    }
+
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+
+        let foldingCell = cell as! HomeMovieCell
+        foldingCell.backgroundColor = UIColor.clearColor()
+
+        let isFolding = cellHeights[indexPath.row] == kCloseCellHeight
+        foldingCell.selectedAnimation(!isFolding, animated: false, completion:nil)
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! HomeMovieCell
+
+        if cell.isAnimating() {
+            return
+        }
+
+        var duration = 0.0
+        if cellHeights[indexPath.row] == kCloseCellHeight { // open cell
+            cellHeights[indexPath.row] = kOpenCellHeight
+            cell.selectedAnimation(true, animated: true, completion: nil)
+            duration = 0.5
+        } else {// close cell
+            cellHeights[indexPath.row] = kCloseCellHeight
+            cell.selectedAnimation(false, animated: true, completion: nil)
+            duration = 0.8
+        }
+
+        UIView.animateWithDuration(duration, delay: 0, options: .CurveEaseOut, animations: { () -> Void in
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            }, completion: nil)
+    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("CinefilMovieCellID", forIndexPath: indexPath) as! CinefilMovieCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(HomeMovieCellID, forIndexPath: indexPath) as! HomeMovieCell
         let movie = movies[indexPath.row]
         cell.setupWithMovie(movie)
 
@@ -72,7 +124,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     // Reset backdrop image position in cells
     func scrollViewDidScroll(scrollView: UIScrollView) {
         for cell in tableView.visibleCells {
-            let cinefilCell = cell as! CinefilMovieCell
+            let cinefilCell = cell as! HomeMovieCell
             let cellPositionInView = tableView.convertRect(cell.frame, toView: view)
             let distanceFromCenter = view.frame.size.height / 2 - cellPositionInView.origin.y
             let spacing = cinefilCell.backdropImageView.frame.size.height - cell.frame.size.height
