@@ -1,23 +1,23 @@
 //
-//  HomeMovieCell.swift
+//  AllocineMovieCell.swift
 //  cinefil
 //
-//  Created by zhou on 2/19/16.
+//  Created by Fong ZHOU on 07/03/16.
 //  Copyright © 2016 zhou. All rights reserved.
 //
 
 import UIKit
 
-let HomeMovieCellNibName = "HomeMovieCell"
-let HomeMovieCellID = "HomeMovieCellID"
+let AllocineMovieCellNibName = "AllocineMovieCell"
+let AllocineMovieCellID = "AllocineMovieCellID"
 
-class HomeMovieCell: FoldingCell {
+class AllocineMovieCell: FoldingCell {
 
     @IBOutlet weak var backdropImageView: UIImageView!
+    @IBOutlet weak var shadowMask: UIView!
 
     @IBOutlet weak var posterView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var shadowMask: UIView!
     @IBOutlet weak var loaderImageView: UIImageView!
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -27,13 +27,11 @@ class HomeMovieCell: FoldingCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
 
-    // Expanded view
-
-
     var movie: Movie?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
         selectionStyle = .None
         foregroundView.layer.masksToBounds = true
 
@@ -51,13 +49,13 @@ class HomeMovieCell: FoldingCell {
     func setupWithMovie(movie: Movie) {
         self.movie = movie
         backdropImageView.image = nil
-        backdropImageView.setMovieDbImage(movie.backDrop)
+        backdropImageView.setImageWithUrlString(movie.backDrop)
         posterImageView.image = nil
-        posterImageView.setMovieDbImage(movie.poster)
+        posterImageView.setImageWithUrlString(movie.poster)
 
         titleLabel.text = movie.title
         ratingLabel.text = String(movie.rating)
-        genreLabel.text = MovieManager.instance.getGenresStringForMovie(movie)
+        genreLabel.text = movie.getGenreString()
         releaseDateLabel.text = movie.releaseDate
     }
 
@@ -94,10 +92,6 @@ class HomeMovieCell: FoldingCell {
         loaderImageView.layer.addAnimation(rotation, forKey: "transform.rotation")
     }
 
-    func loadAdditionnalInfo(movie: Movie) {
-
-    }
-
     // MARK: - FoldingCell
 
     override func animationDuration(itemIndex:NSInteger, type:AnimationType)-> NSTimeInterval {
@@ -105,10 +99,23 @@ class HomeMovieCell: FoldingCell {
         return durations[itemIndex]
     }
 
+    // https://github.com/jberlana/JBParallaxCell
+    func cellOnTableViewDidScroll(tableView: UITableView, view: UIView) {
+        let rectInSuperview = tableView.convertRect(frame, toView: view)
+
+        let distanceFromCenter = view.frame.size.height / 2 - rectInSuperview.origin.y
+        let difference = backdropImageView.frame.size.height - frame.size.height
+        let move = (distanceFromCenter / view.frame.size.height) * difference
+
+        var imageRect = backdropImageView.frame
+        imageRect.origin.y = move - difference / 2
+        backdropImageView.frame = imageRect
+    }
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+
         // Configure the view for the selected state
     }
-    
+
 }

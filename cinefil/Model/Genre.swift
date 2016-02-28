@@ -10,12 +10,17 @@ import SwiftyJSON
 
 struct Genre {
 
-    let id: Int
-    let name: String?
+    let id: String
+    let name: String
 
     init(json: JSON) {
-        id = json["id"].intValue
+        id = json["id"].stringValue
         name = json["name"].stringValue
+    }
+
+    init(id: String, value: String) {
+        self.id = id
+        self.name = value
     }
 
 }

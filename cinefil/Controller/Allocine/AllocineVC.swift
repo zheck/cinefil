@@ -1,15 +1,15 @@
 //
-//  CinefilVC.swift
+//  AllocineVC.swift
 //  cinefil
 //
-//  Created by zhou on 2/13/16.
+//  Created by Fong ZHOU on 07/03/16.
 //  Copyright © 2016 zhou. All rights reserved.
 //
 
 import UIKit
 import BXProgressHUD
 
-class HomeVC: CinefilBaseVC {
+class AllocineVC: CinefilBaseVC {
 
     @IBOutlet weak var tableView: UITableView!
 
@@ -23,22 +23,20 @@ class HomeVC: CinefilBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.registerNib(UINib(nibName: HomeMovieCellNibName, bundle: nil), forCellReuseIdentifier: HomeMovieCellID)
+        tableView.registerNib(UINib(nibName: AllocineMovieCellNibName, bundle: nil), forCellReuseIdentifier: AllocineMovieCellID)
         let hub = BXProgressHUD.showHUDAddedTo(self.view)
-
-        MovieDBService.instance.fetchMovies(.NowPlaying,
-            success: { (response) -> Void in
+        AllocineManager.instance.fetchMovies(
+            { movies in
                 hub.hide()
-
-                self.movies = response
+                self.movies = movies
                 self.createCellHeightsArray()
                 self.tableView.dataSource = self
                 self.tableView.delegate = self
                 self.tableView.reloadData()
             },
-            failure: { (error) -> Void in
-                print(error.description)
+            failure: { error in
                 hub.hide()
+                print(error.description)
             }
         )
     }
@@ -54,6 +52,7 @@ class HomeVC: CinefilBaseVC {
         // Dispose of any resources that can be recreated.
     }
     
+
     /*
     // MARK: - Navigation
 
@@ -66,7 +65,7 @@ class HomeVC: CinefilBaseVC {
 
 }
 
-extension HomeVC: UITableViewDataSource, UITableViewDelegate {
+extension AllocineVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
@@ -78,7 +77,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 
-        let foldingCell = cell as! HomeMovieCell
+        let foldingCell = cell as! AllocineMovieCell
         foldingCell.backgroundColor = UIColor.clearColor()
 
         let isFolding = cellHeights[indexPath.row] == kCloseCellHeight
@@ -86,7 +85,7 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(HomeMovieCellID, forIndexPath: indexPath) as! HomeMovieCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(AllocineMovieCellID, forIndexPath: indexPath) as! AllocineMovieCell
         let movie = movies[indexPath.row]
         cell.setupWithMovie(movie)
 
@@ -100,10 +99,10 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! HomeMovieCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AllocineMovieCell
         guard !cell.isAnimating() else { return }
 
-        loadAdditionnalInfoForCell(cell)
+        //        loadAdditionnalInfoForCell(cell)
         var duration = 0.0
         if cellHeights[indexPath.row] == kCloseCellHeight { // open cell
             cellHeights[indexPath.row] = kOpenCellHeight
@@ -123,34 +122,28 @@ extension HomeVC: UITableViewDataSource, UITableViewDelegate {
             completion: nil
         )
     }
-
-    func loadAdditionnalInfoForCell(cell: HomeMovieCell) {
-        let movie = cell.movie!
-        guard !movie.additionnalInfoLoaded else {
-            cell.loadAdditionnalInfo(movie)
-            return
-        }
-
-        MovieManager.instance.fetchAdditionnalInformation(movie,
-            success: {
-                cell.loadAdditionnalInfo(movie)
-            },
-            failure: { (error) -> Void in
-            }
-        )
-    }
+//
+//    func loadAdditionnalInfoForCell(cell: HomeMovieCell) {
+//        let movie = cell.movie!
+//        guard !movie.additionnalInfoLoaded else {
+//            cell.loadAdditionnalInfo(movie)
+//            return
+//        }
+//
+//        MovieManager.instance.fetchAdditionnalInformation(movie,
+//            success: {
+//                cell.loadAdditionnalInfo(movie)
+//            },
+//            failure: { (error) -> Void in
+//            }
+//        )
+//    }
 
     // Reset backdrop image position in cells
     func scrollViewDidScroll(scrollView: UIScrollView) {
         for cell in tableView.visibleCells {
-            let cinefilCell = cell as! HomeMovieCell
-            let cellPositionInView = tableView.convertRect(cell.frame, toView: view)
-            let distanceFromCenter = view.frame.size.height / 2 - cellPositionInView.origin.y
-            let spacing = cinefilCell.backdropImageView.frame.size.height - cell.frame.size.height
-            let movement = (distanceFromCenter / view.frame.size.height) * spacing
-            var imageRect = cinefilCell.backdropImageView.frame
-            imageRect.origin.y = movement - spacing / 2
-            cinefilCell.backdropImageView.frame = imageRect
+            let cinefilCell = cell as! AllocineMovieCell
+            cinefilCell.cellOnTableViewDidScroll(tableView, view: view)
         }
     }
 

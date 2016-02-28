@@ -16,6 +16,7 @@
 		487185F91C67F364005CAA47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487185F81C67F364005CAA47 /* AppDelegate.swift */; };
 		487186001C67F364005CAA47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 487185FF1C67F364005CAA47 /* Assets.xcassets */; };
 		487186031C67F364005CAA47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487186011C67F364005CAA47 /* LaunchScreen.storyboard */; };
+		487B6D2D1C92052F00F29296 /* AllocineKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487B6D2C1C92052F00F29296 /* AllocineKey.swift */; };
 		489AEDD31C6FDAF300B86208 /* MovieDBService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AEDD21C6FDAF300B86208 /* MovieDBService.swift */; };
 		489AEDDA1C6FE48F00B86208 /* AllocineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AEDD91C6FE48F00B86208 /* AllocineService.swift */; };
 		489AEDE71C6FE74F00B86208 /* CinefilBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489AEDDC1C6FE74F00B86208 /* CinefilBaseVC.swift */; };
@@ -31,11 +32,16 @@
 		489D46BA1C73DBF600EFA966 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489D46B91C73DBF600EFA966 /* UIColorExtension.swift */; };
 		48A12E811C76680F008048EA /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A12E801C76680F008048EA /* UIImageViewExtension.swift */; };
 		48D8B3C21C71EEB40019F12A /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8B3C11C71EEB40019F12A /* FileManager.swift */; };
-		48D8B3C61C71F0CA0019F12A /* TheMovieDB in Resources */ = {isa = PBXBuildFile; fileRef = 48D8B3C51C71F0CA0019F12A /* TheMovieDB */; };
 		48D8B3C81C7204700019F12A /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8B3C71C7204700019F12A /* ServiceError.swift */; };
-		48D8B3CA1C720DDF0019F12A /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D8B3C91C720DDF0019F12A /* MovieManager.swift */; };
 		48F58BC21C73C85B004D7517 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F58BC11C73C85B004D7517 /* Genre.swift */; };
 		48FEB2141C770E8900BE6EAE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FEB2131C770E8900BE6EAE /* UIViewExtension.swift */; };
+		7C1BBE8B1C8DD5A4007430A9 /* AllocineVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1BBE8A1C8DD5A4007430A9 /* AllocineVC.swift */; };
+		7C1BBE8F1C8DD6CF007430A9 /* AllocineMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1BBE8D1C8DD6CF007430A9 /* AllocineMovieCell.swift */; };
+		7C1BBE901C8DD6CF007430A9 /* AllocineMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C1BBE8E1C8DD6CF007430A9 /* AllocineMovieCell.xib */; };
+		7C63B4A71C8DEC52006E7D6D /* AllocineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63B4A61C8DEC52006E7D6D /* AllocineManager.swift */; };
+		7CC3F8E71C84A32C00E341C5 /* LoadingPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC3F8E61C84A32C00E341C5 /* LoadingPageVC.swift */; };
+		7CC3F8EC1C84AA3400E341C5 /* TheMovieDB in Resources */ = {isa = PBXBuildFile; fileRef = 7CC3F8EB1C84AA3400E341C5 /* TheMovieDB */; };
+		7CC3F8EE1C84AAAE00E341C5 /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CC3F8ED1C84AAAE00E341C5 /* MovieManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +55,8 @@
 		487185FF1C67F364005CAA47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		487186021C67F364005CAA47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		487186041C67F364005CAA47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		487B6D2C1C92052F00F29296 /* AllocineKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllocineKey.swift; sourceTree = "<group>"; };
+		487B6D311C9209E000F29296 /* cinefil-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "cinefil-Bridging-Header.h"; sourceTree = "<group>"; };
 		489AEDD21C6FDAF300B86208 /* MovieDBService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDBService.swift; sourceTree = "<group>"; };
 		489AEDD91C6FE48F00B86208 /* AllocineService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllocineService.swift; sourceTree = "<group>"; };
 		489AEDDC1C6FE74F00B86208 /* CinefilBaseVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinefilBaseVC.swift; sourceTree = "<group>"; };
@@ -64,11 +72,16 @@
 		489D46B91C73DBF600EFA966 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		48A12E801C76680F008048EA /* UIImageViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		48D8B3C11C71EEB40019F12A /* FileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		48D8B3C51C71F0CA0019F12A /* TheMovieDB */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TheMovieDB; sourceTree = "<group>"; };
 		48D8B3C71C7204700019F12A /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
-		48D8B3C91C720DDF0019F12A /* MovieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		48F58BC11C73C85B004D7517 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		48FEB2131C770E8900BE6EAE /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		7C1BBE8A1C8DD5A4007430A9 /* AllocineVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllocineVC.swift; sourceTree = "<group>"; };
+		7C1BBE8D1C8DD6CF007430A9 /* AllocineMovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllocineMovieCell.swift; sourceTree = "<group>"; };
+		7C1BBE8E1C8DD6CF007430A9 /* AllocineMovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AllocineMovieCell.xib; sourceTree = "<group>"; };
+		7C63B4A61C8DEC52006E7D6D /* AllocineManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllocineManager.swift; sourceTree = "<group>"; };
+		7CC3F8E61C84A32C00E341C5 /* LoadingPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPageVC.swift; sourceTree = "<group>"; };
+		7CC3F8EB1C84AA3400E341C5 /* TheMovieDB */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TheMovieDB; sourceTree = "<group>"; };
+		7CC3F8ED1C84AAAE00E341C5 /* MovieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		7EFF4A1A411C62629FF403E7 /* Pods_cinefil.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_cinefil.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8422385F7B714829BFA35F54 /* Pods-cinefil.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinefil.release.xcconfig"; path = "Pods/Target Support Files/Pods-cinefil/Pods-cinefil.release.xcconfig"; sourceTree = "<group>"; };
 		C757342824856ACC0F202564 /* Pods-cinefil.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cinefil.debug.xcconfig"; path = "Pods/Target Support Files/Pods-cinefil/Pods-cinefil.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,6 +150,7 @@
 				4802D59D1C6A7DDC00B02F5B /* Intro.storyboard */,
 				483A1C3F1C6D27BD0050486E /* Cinefil.storyboard */,
 				487185FF1C67F364005CAA47 /* Assets.xcassets */,
+				487B6D2E1C9207C100F29296 /* Bridge */,
 				489D46B61C73DB4000EFA966 /* Extension */,
 				489AEDEF1C6FEB6D00B86208 /* Model */,
 				489AEDF01C6FEB7A00B86208 /* View */,
@@ -158,6 +172,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		487B6D2E1C9207C100F29296 /* Bridge */ = {
+			isa = PBXGroup;
+			children = (
+				487B6D311C9209E000F29296 /* cinefil-Bridging-Header.h */,
+			);
+			path = Bridge;
+			sourceTree = "<group>";
+		};
 		489AEDD11C6FDAD100B86208 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,7 +195,9 @@
 			children = (
 				489AEDDC1C6FE74F00B86208 /* CinefilBaseVC.swift */,
 				489AEDE41C6FE74F00B86208 /* TabBarController.swift */,
+				7CC3F8E61C84A32C00E341C5 /* LoadingPageVC.swift */,
 				489AEDDD1C6FE74F00B86208 /* Intro */,
+				7C1BBE891C8DD590007430A9 /* Allocine */,
 				489AEDE21C6FE74F00B86208 /* Movie */,
 			);
 			path = Controller;
@@ -203,7 +227,8 @@
 			children = (
 				489AEDE61C6FE74F00B86208 /* UserManager.swift */,
 				48D8B3C11C71EEB40019F12A /* FileManager.swift */,
-				48D8B3C91C720DDF0019F12A /* MovieManager.swift */,
+				7CC3F8ED1C84AAAE00E341C5 /* MovieManager.swift */,
+				7C63B4A61C8DEC52006E7D6D /* AllocineManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -220,6 +245,7 @@
 		489AEDF01C6FEB7A00B86208 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C1BBE8C1C8DD6B8007430A9 /* Allocine */,
 				489AEDF31C6FEB9F00B86208 /* Movie */,
 			);
 			path = View;
@@ -248,7 +274,8 @@
 		48D8B3BE1C71DC4B0019F12A /* api_key */ = {
 			isa = PBXGroup;
 			children = (
-				48D8B3C51C71F0CA0019F12A /* TheMovieDB */,
+				7CC3F8EB1C84AA3400E341C5 /* TheMovieDB */,
+				487B6D2C1C92052F00F29296 /* AllocineKey.swift */,
 			);
 			path = api_key;
 			sourceTree = SOURCE_ROOT;
@@ -259,6 +286,23 @@
 				7EFF4A1A411C62629FF403E7 /* Pods_cinefil.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7C1BBE891C8DD590007430A9 /* Allocine */ = {
+			isa = PBXGroup;
+			children = (
+				7C1BBE8A1C8DD5A4007430A9 /* AllocineVC.swift */,
+			);
+			path = Allocine;
+			sourceTree = "<group>";
+		};
+		7C1BBE8C1C8DD6B8007430A9 /* Allocine */ = {
+			isa = PBXGroup;
+			children = (
+				7C1BBE8D1C8DD6CF007430A9 /* AllocineMovieCell.swift */,
+				7C1BBE8E1C8DD6CF007430A9 /* AllocineMovieCell.xib */,
+			);
+			path = Allocine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,11 +368,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				487186031C67F364005CAA47 /* LaunchScreen.storyboard in Resources */,
+				7CC3F8EC1C84AA3400E341C5 /* TheMovieDB in Resources */,
 				487186001C67F364005CAA47 /* Assets.xcassets in Resources */,
 				483A1C411C6D27BD0050486E /* Cinefil.storyboard in Resources */,
+				7C1BBE901C8DD6CF007430A9 /* AllocineMovieCell.xib in Resources */,
 				480B61671C777665008D30B7 /* HomeMovieCell.xib in Resources */,
 				4802D59F1C6A7DDC00B02F5B /* Intro.storyboard in Resources */,
-				48D8B3C61C71F0CA0019F12A /* TheMovieDB in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,6 +434,7 @@
 			files = (
 				48D8B3C81C7204700019F12A /* ServiceError.swift in Sources */,
 				489AEDE71C6FE74F00B86208 /* CinefilBaseVC.swift in Sources */,
+				7CC3F8EE1C84AAAE00E341C5 /* MovieManager.swift in Sources */,
 				489AEDE91C6FE74F00B86208 /* IntroDirectorVC.swift in Sources */,
 				489AEDF21C6FEB8E00B86208 /* Movie.swift in Sources */,
 				489D46BA1C73DBF600EFA966 /* UIColorExtension.swift in Sources */,
@@ -397,11 +443,14 @@
 				489AEDED1C6FE74F00B86208 /* TabBarController.swift in Sources */,
 				489AEDE81C6FE74F00B86208 /* IntroCinefilVC.swift in Sources */,
 				480B61631C773CF2008D30B7 /* FoldingCell.swift in Sources */,
-				48D8B3CA1C720DDF0019F12A /* MovieManager.swift in Sources */,
+				487B6D2D1C92052F00F29296 /* AllocineKey.swift in Sources */,
+				7C1BBE8B1C8DD5A4007430A9 /* AllocineVC.swift in Sources */,
+				7C63B4A71C8DEC52006E7D6D /* AllocineManager.swift in Sources */,
 				48A12E811C76680F008048EA /* UIImageViewExtension.swift in Sources */,
 				489AEDD31C6FDAF300B86208 /* MovieDBService.swift in Sources */,
 				48F58BC21C73C85B004D7517 /* Genre.swift in Sources */,
 				489AEDEC1C6FE74F00B86208 /* HomeVC.swift in Sources */,
+				7CC3F8E71C84A32C00E341C5 /* LoadingPageVC.swift in Sources */,
 				480B61661C777665008D30B7 /* HomeMovieCell.swift in Sources */,
 				489AEDEB1C6FE74F00B86208 /* IntroVC.swift in Sources */,
 				489AEDDA1C6FE48F00B86208 /* AllocineService.swift in Sources */,
@@ -409,6 +458,7 @@
 				489AEDEE1C6FE74F00B86208 /* UserManager.swift in Sources */,
 				48FEB2141C770E8900BE6EAE /* UIViewExtension.swift in Sources */,
 				487185F91C67F364005CAA47 /* AppDelegate.swift in Sources */,
+				7C1BBE8F1C8DD6CF007430A9 /* AllocineMovieCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,11 +580,14 @@
 			baseConfigurationReference = C757342824856ACC0F202564 /* Pods-cinefil.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = cinefil/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fong-Zhou.cinefil";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "cinefil/Bridge/cinefil-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -543,11 +596,13 @@
 			baseConfigurationReference = 8422385F7B714829BFA35F54 /* Pods-cinefil.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = cinefil/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Fong-Zhou.cinefil";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "cinefil/Bridge/cinefil-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LjE-oZ-WAX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="-697"/>
+            <point key="canvasLocation" x="1211" y="-685"/>
         </scene>
         <!--Selection-->
         <scene sceneID="gQh-n9-NWz">
@@ -57,26 +57,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y01-E6-hD6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="38"/>
+            <point key="canvasLocation" x="1211" y="791"/>
         </scene>
-        <!--Shows-->
-        <scene sceneID="N8A-g0-1MM">
+        <!--Allocine-->
+        <scene sceneID="N4l-ve-o9x">
             <objects>
-                <viewController id="hrW-AM-eWi" sceneMemberID="viewController">
+                <viewController id="6DB-1F-J85" customClass="AllocineVC" customModule="cinefil" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="8UD-8t-He3"/>
-                        <viewControllerLayoutGuide type="bottom" id="dFp-pD-f0j"/>
+                        <viewControllerLayoutGuide type="top" id="UuP-hw-FWB"/>
+                        <viewControllerLayoutGuide type="bottom" id="5YK-eu-bmb"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LuZ-L4-6JG">
+                    <view key="view" contentMode="scaleToFill" id="saL-ze-3gH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="564" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aN6-W8-9bL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="aN6-W8-9bL" firstAttribute="leading" secondItem="saL-ze-3gH" secondAttribute="leading" id="3eL-SE-sf0"/>
+                            <constraint firstItem="aN6-W8-9bL" firstAttribute="top" secondItem="saL-ze-3gH" secondAttribute="top" id="5kU-1B-p6e"/>
+                            <constraint firstAttribute="trailing" secondItem="aN6-W8-9bL" secondAttribute="trailing" id="iB8-Lj-yKH"/>
+                            <constraint firstItem="5YK-eu-bmb" firstAttribute="top" secondItem="aN6-W8-9bL" secondAttribute="bottom" id="xat-8K-Ggh"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shows" image="ShowsIcon" id="vmH-bp-deW"/>
+                    <tabBarItem key="tabBarItem" title="Allocine" image="Allocine" id="tOl-hU-3b0"/>
+                    <connections>
+                        <outlet property="tableView" destination="aN6-W8-9bL" id="Wj4-w9-BtT"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bik-8E-3qJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wws-0d-GIi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="800"/>
+            <point key="canvasLocation" x="1211" y="37"/>
         </scene>
         <!--Settings-->
         <scene sceneID="BE2-kI-Jr6">
@@ -95,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MYy-Dz-5zn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1211" y="1544"/>
+            <point key="canvasLocation" x="1211" y="1520"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="kvg-1q-a1b">
@@ -109,20 +124,20 @@
                     </tabBar>
                     <connections>
                         <segue destination="TLe-4e-WR3" kind="relationship" relationship="viewControllers" id="cIJ-Pb-STH"/>
+                        <segue destination="6DB-1F-J85" kind="relationship" relationship="viewControllers" id="jON-QD-m0V"/>
                         <segue destination="DF2-h5-9H3" kind="relationship" relationship="viewControllers" id="7nc-3S-kyL"/>
-                        <segue destination="hrW-AM-eWi" kind="relationship" relationship="viewControllers" id="c4c-7c-ydh"/>
                         <segue destination="5al-RU-2ax" kind="relationship" relationship="viewControllers" id="Md6-Zn-5r2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igg-cb-d7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="363" y="407"/>
+            <point key="canvasLocation" x="345" y="407"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Allocine" width="30" height="30"/>
         <image name="MoviesIcon" width="30" height="30"/>
         <image name="MoviesList" width="30" height="30"/>
         <image name="SettingsIcon" width="30" height="30"/>
-        <image name="ShowsIcon" width="30" height="30"/>
     </resources>
 </document>
