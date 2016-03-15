@@ -8,9 +8,15 @@
 
 import UIKit
 
-class AllocineManager: NSObject {
+class AllocineManager {
 
     static let instance = AllocineManager()
+
+    let dateFormatter = NSDateFormatter()
+
+    init() {
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+    }
 
     func fetchMovies(success: ([Movie] -> Void), failure: (ServiceError -> Void)) {
         let params = [
@@ -32,8 +38,22 @@ class AllocineManager: NSObject {
         )
     }
 
-    func fetchShowTime() {
-        AllocineService.instance.fetchShowTimeList()
+    func fetchShowTime(movie: Movie, success: ([ShowTime] -> Void), failure: (ServiceError -> Void)) {
+        let params = [
+            ("theaters", "C0159,C2954,C0026"),
+            ("movie", movie.id),
+            ("date", dateFormatter.stringFromDate(NSDate()))
+        ]
+        AllocineService.instance.fetchShowTimeList(params,
+            success: { response in
+                var showTimeList = [ShowTime]()
+                for row in response["feed"]["theaterShowtimes"].arrayValue {
+                    showTimeList.append(ShowTime(json: row))
+                }
+                success(showTimeList)
+            },
+            failure: failure
+        )
     }
 
 }

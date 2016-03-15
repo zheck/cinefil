@@ -11,8 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 // https://wiki.gromez.fr/dev/api/allocine_v3
-// http://api.allocine.fr/rest/v3/movie?partner=100043982026&format=json&code=146631&profile=large&filter=movie&sed=20160311&sig=jYFtDq4FZMWvmCdg2LBIFEK5ZCE%3D
-class AllocineService: NSObject {
+class AllocineService {
 
     enum Service: String {
         case MovieList = "/movielist"
@@ -52,37 +51,19 @@ class AllocineService: NSObject {
         baserequest(urlString, success: success, failure: failure)
     }
 
-    func fetchShowTimeList() {
-        // mk2 http://api.allocine.fr/rest/v3/showtimelist?partner=100043982026&format=json&theaters=C2954&date=2016-03-11&count=10&page=1&sed=20160311&sig=XM3DMJAab1%2BCIHV8HPEQOvIemhQ%3D
-        // bercy http://api.allocine.fr/rest/v3/showtimelist?partner=100043982026&format=json&theaters=C0026&date=2016-03-11&count=10&page=1&sed=20160311&sig=YRJz3FXx%2BHZ%2BhLPDxvhquboB4EA%3D
-        // halles http://api.allocine.fr/rest/v3/showtimelist?partner=100043982026&format=json&theaters=C0159&date=2016-03-11&count=10&page=1&sed=20160311&sig=NuOaobPuTcsMgYrRWVb3w6S2dnA%3D
+    func fetchShowTimeList(params: [(String, String)], success: (JSON -> Void), failure: (ServiceError -> Void)) {
         let privateKey = [
             ("partner", AllocineKey.partnerKey),
             ("format", "json"),
-            //            ("code", AllocineKey.partnerCode),
-
         ]
-        let params = [
-            ("theaters", "C0159"),
-            //            ("theaters", "C0159,C2954,C0026"),
-            ("movie", "223207"),
-            ("date", "2016-03-11"),
-            //            ("count", "10"),
-            //            ("page", "1"),
 
-        ]
         let requestParams = privateKey + params + [("sed", sedKey())]
         let paramString = requestParams.map( { "\($0.0)=\($0.1)" } ).joinWithSeparator("&")
         let sig = sigKey(paramString)
         let urlString = baseUrl + "/showtimelist" + "?" + paramString + "&sig=\(sig)"
 
         print(urlString)
-        baserequest(urlString, success: { (response) -> Void in
-            print("ok")
-            }) { (error) -> Void in
-                print("ko")
-        }
-
+        baserequest(urlString, success: success, failure: failure)
     }
 
     //http://api.allocine.fr/rest/v3/showtimelist?partner=100043982026&format=json&theaters=C0159&date=2016-03-11&count=10&page=1&sed=20160311&sig=NuOaobPuTcsMgYrRWVb3w6S2dnA%3D

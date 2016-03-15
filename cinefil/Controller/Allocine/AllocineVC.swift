@@ -14,7 +14,7 @@ class AllocineVC: CinefilBaseVC {
     @IBOutlet weak var tableView: UITableView!
 
     let kCloseCellHeight: CGFloat = 140
-    let kOpenCellHeight: CGFloat = 352
+    let kOpenCellHeight: CGFloat = 360
 
     var movies: [Movie] = []
     var appearedMovies: [Movie] = []
@@ -102,7 +102,7 @@ extension AllocineVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AllocineMovieCell
         guard !cell.isAnimating() else { return }
 
-        //        loadAdditionnalInfoForCell(cell)
+        updateCellDetails(cell)
         var duration = 0.0
         if cellHeights[indexPath.row] == kCloseCellHeight { // open cell
             cellHeights[indexPath.row] = kOpenCellHeight
@@ -122,22 +122,20 @@ extension AllocineVC: UITableViewDataSource, UITableViewDelegate {
             completion: nil
         )
     }
-//
-//    func loadAdditionnalInfoForCell(cell: HomeMovieCell) {
-//        let movie = cell.movie!
-//        guard !movie.additionnalInfoLoaded else {
-//            cell.loadAdditionnalInfo(movie)
-//            return
-//        }
-//
-//        MovieManager.instance.fetchAdditionnalInformation(movie,
-//            success: {
-//                cell.loadAdditionnalInfo(movie)
-//            },
-//            failure: { (error) -> Void in
-//            }
-//        )
-//    }
+ 
+
+    func updateCellDetails(cell: AllocineMovieCell) {
+        let movie = cell.movie!
+        guard cell.showTimes == nil else { return }
+
+        AllocineManager.instance.fetchShowTime(movie,
+            success: { response in
+                cell.loadDetails(response)
+            },
+            failure: { error in
+            }
+        )
+    }
 
     // Reset backdrop image position in cells
     func scrollViewDidScroll(scrollView: UIScrollView) {

@@ -13,9 +13,11 @@ let AllocineMovieCellID = "AllocineMovieCellID"
 
 class AllocineMovieCell: FoldingCell {
 
+    // Shadow
     @IBOutlet weak var backdropImageView: UIImageView!
     @IBOutlet weak var shadowMask: UIView!
 
+    // Poster
     @IBOutlet weak var posterView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var loaderImageView: UIImageView!
@@ -27,7 +29,13 @@ class AllocineMovieCell: FoldingCell {
     @IBOutlet weak var releaseDateLabel: UILabel!
     @IBOutlet weak var separatorView: UIView!
 
+    // Expanded View
+
+    @IBOutlet weak var expandedBackgroundImage: UIImageView!
+    @IBOutlet var containerViews: [UIView]!
+
     var movie: Movie?
+    var showTimes: [ShowTime]?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +52,10 @@ class AllocineMovieCell: FoldingCell {
 
         posterView.addBackgroundLayer(UIColor.colorFromHex("c8c8c8"), to:UIColor.colorFromHex("aaaaaa"))
         shadowMask.addBackgroundLayer(UIColor.clearColor(), to: UIColor.colorFromHex("000000", alpha: 0.9))
+        for view in containerViews {
+            view.layer.borderWidth = 1
+            view.layer.borderColor = UIColor.grayColor().CGColor
+        }
     }
 
     func setupWithMovie(movie: Movie) {
@@ -97,6 +109,43 @@ class AllocineMovieCell: FoldingCell {
     override func animationDuration(itemIndex:NSInteger, type:AnimationType)-> NSTimeInterval {
         let durations = [0.26, 0.2, 0.2]
         return durations[itemIndex]
+    }
+
+    func loadDetails(showTimes: [ShowTime]) {
+        self.showTimes = showTimes
+        expandedBackgroundImage.image = posterImageView.image
+
+        for i in 0..<showTimes.count {
+            let view = containerViews[i]
+            if view.subviews.count > 0 {
+                for subview in view.subviews {
+                    subview.removeFromSuperview()
+                }
+            }
+            let showTime = showTimes[i]
+            loadShowTimes(view, showTime: showTime)
+        }
+    }
+
+    func loadShowTimes(view: UIView, showTime: ShowTime) {
+        let label = UILabel(frame: CGRect(x: 20, y: 8, width: frame.size.width - 40, height: 24))
+        var posy = CGFloat(28.0)
+        label.textColor = UIColor.whiteColor()
+        label.text = showTime.theater.name
+        view.addSubview(label)
+
+        for showTimeSessions in showTime.sessions {
+            let text = showTimeSessions.version + ":\n\t" + showTimeSessions.scr.joinWithSeparator(" ")
+            let label = UILabel(frame: CGRect(x: CGFloat(20), y: posy, width: CGFloat(frame.size.width - 40), height: CGFloat(40)))
+            posy += 40
+            label.numberOfLines = 0
+            label.lineBreakMode = .ByWordWrapping
+            label.font = UIFont.systemFontOfSize(14)
+            label.textColor = UIColor.whiteColor()
+            label.text = text
+            view.addSubview(label)
+        }
+
     }
 
     // https://github.com/jberlana/JBParallaxCell
