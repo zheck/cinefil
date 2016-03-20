@@ -1,41 +1,44 @@
 //
-//  MovieManager.swift
+//  MovieGenreManager.swift
 //  cinefil
 //
-//  Created by zhou on 2/15/16.
+//  Created by Fong ZHOU on 29/02/16.
 //  Copyright © 2016 zhou. All rights reserved.
 //
 
-import UIKit
-
 class MovieManager {
 
-    class func getMovieGenre(success: ([Genre] -> Void), failure: (ServiceError -> Void)) {
-        MovieDBService.instance.baseRequest(.MovieGenres, success: { (response) -> Void in
-            var genres: [Genre] = []
-            for genre in response["genres"].arrayValue {
-                genres.append(Genre(json: genre))
-            }
-            success(genres)
+    static let instance = MovieManager()
 
-            }) { (error) -> Void in
-                failure(ServiceError(error: error.description))
-        }
+    var genres: [String: Genre] = Dictionary()
+
+    init() {
     }
 
-    class func getPopularMovies(success: ([Movie] -> Void), failure: (ServiceError -> Void)) {
+    func fetchGenres(success: (Void -> Void), failure: (ServiceError -> Void)) {
+        MovieDBService.instance.fetchtMovieGenres(
+            { response in
+                self.genres = response
+                success()
+            },
+            failure: failure
+        )
+    }
 
-        MovieDBService.instance.baseRequest(.PopularMovies, success: { (response) -> Void in
-            var movies: [Movie] = []
-            for movie in response["results"].arrayValue {
-                movies.append(Movie(json: movie))
-            }
-            success(movies)
+    func getGenresStringForMovie(movie: Movie) -> String {
+        guard movie.genres.count != 0 else { return "" }
+        return ""
+        //        return movie.genres.map( { genres[$0]!.name} ).joinWithSeparator(", ")
+    }
 
-            }) { (error) -> Void in
-                failure(ServiceError(error: error.description))
-        }
-
+    func fetchAdditionnalInformation(movie: Movie, success: (Void -> Void), failure: (ServiceError -> Void)) {
+        MovieDBService.instance.fetchMovieCredits(movie.id,
+            success: { response in
+                movie.additionnalInfoLoaded = true
+                success()
+            },
+            failure: failure
+        )
     }
 
 }

@@ -16,6 +16,8 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = UIColor.yellowColor()
         tabBar.backgroundImage = UIImage()
         tabBar.backgroundColor = UIColor.blackColor()
+
+        selectedIndex = 1
     }
 
     override func didReceiveMemoryWarning() {

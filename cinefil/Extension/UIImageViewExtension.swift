@@ -19,5 +19,13 @@ extension UIImageView {
         }
     }
 
+    func setImageWithUrlString(path: String?) {
+        guard path != nil else { return }
+
+        if let url = NSURL(string: path!) {
+            self.af_setImageWithURL(url)
+        }
+    }
+
 }
 
